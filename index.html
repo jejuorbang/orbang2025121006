@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>탐나는친구들 리유저블백 - 제주를 담은 상큼함!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+            color: #333;
+            line-height: 1.8;
+            background-color: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 헤더 */
+        header {
+            background: linear-gradient(135deg, #FF6B35 0%, #FF8E53 100%);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        /* 섹션 공통 스타일 */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #FF6B35;
+            font-weight: bold;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 22px;
+            color: #666;
+            margin-bottom: 70px;
+            line-height: 1.6;
+        }
+
+        /* 01. 인트로 히어로 섹션 */
+        .hero-section {
+            position: relative;
+            min-height: 700px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #fff8f0 0%, #ffffff 100%);
+            display: flex;
+            align-items: center;
+            padding: 80px 0;
+        }
+
+        .hero-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            width: 100%;
+        }
+
+        .hero-content {
+            flex: 1;
+            z-index: 10;
+        }
+
+        .hero-text h1 {
+            font-size: 56px;
+            margin-bottom: 25px;
+            font-weight: 900;
+            color: #FF6B35;
+            line-height: 1.3;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .hero-text .main-copy {
+            font-size: 32px;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .hero-text .sub-copy {
+            font-size: 22px;
+            color: #666;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        .hero-slider {
+            flex: 1;
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: #FF6B35;
+            width: 35px;
+            border-radius: 6px;
+        }
+
+        /* 제주여행 슬라이더 */
+        .jeju-travel-slider {
+            margin-top: 60px;
+            position: relative;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .jeju-slider-container {
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+        }
+
+        .jeju-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .jeju-slide.active {
+            opacity: 1;
+        }
+
+        .jeju-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .jeju-slider-dots {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .jeju-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .jeju-dot.active {
+            background: #FF6B35;
+            width: 30px;
+            border-radius: 5px;
+            border-color: #FF6B35;
+        }
+
+        .jeju-travel-title {
+            text-align: center;
+            font-size: 32px;
+            color: #FF6B35;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 02. 디자인 & 감성 섹션 */
+        .design-emotion-section {
+            background: linear-gradient(135deg, #fff8f0 0%, #fff 100%);
+        }
+
+        .emotion-content {
+            max-width: 900px;
+            margin: 0 auto 60px;
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        .emotion-content h3 {
+            font-size: 32px;
+            color: #FF6B35;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .emotion-content p {
+            font-size: 18px;
+            color: #555;
+            line-height: 2;
+            margin-bottom: 20px;
+        }
+
+        .emotion-content .highlight {
+            color: #FF6B35;
+            font-weight: bold;
+        }
+
+        .design-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .design-image-card {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            transition: all 0.4s ease;
+            background: white;
+        }
+
+        .design-image-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(255, 107, 53, 0.25);
+        }
+
+        .design-image-card img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+        }
+
+        /* 03. 수납력 & 실용성 섹션 */
+        .functionality-section {
+            background: #fff;
+        }
+
+        .function-intro {
+            max-width: 900px;
+            margin: 0 auto 60px;
+            text-align: center;
+            background: linear-gradient(135deg, #fff8f0 0%, #ffffff 100%);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        .function-intro h3 {
+            font-size: 36px;
+            color: #FF6B35;
+            margin-bottom: 25px;
+        }
+
+        .function-intro p {
+            font-size: 19px;
+            color: #555;
+            line-height: 2;
+        }
+
+        .use-cases {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .use-case-card {
+            background: linear-gradient(135deg, #fff8f0 0%, #ffffff 100%);
+            padding: 45px 35px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .use-case-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.2);
+        }
+
+        .use-case-icon {
+            font-size: 70px;
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        .use-case-card h4 {
+            font-size: 26px;
+            color: #FF6B35;
+            margin-bottom: 18px;
+            font-weight: bold;
+        }
+
+        .use-case-card p {
+            font-size: 17px;
+            color: #666;
+            line-height: 1.9;
+        }
+
+        /* 04. 내구성 & 휴대성 섹션 */
+        .durability-section {
+            background: linear-gradient(135deg, #f0f8ff 0%, #fff 100%);
+        }
+
+        .durability-content {
+            max-width: 900px;
+            margin: 0 auto 60px;
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        .durability-content h3 {
+            font-size: 32px;
+            color: #FF6B35;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .durability-content p {
+            font-size: 18px;
+            color: #555;
+            line-height: 2;
+        }
+
+        .detail-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+            margin-top: 50px;
+        }
+
+        .detail-image-card {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            transition: all 0.4s ease;
+            background: white;
+        }
+
+        .detail-image-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 45px rgba(0,0,0,0.2);
+        }
+
+        .detail-image-card img {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+        }
+
+        /* 05. 제품 정보 및 옵션 섹션 */
+        .product-spec-section {
+            background: #fff;
+        }
+
+        .spec-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .product-info-box {
+            background: linear-gradient(135deg, #fff8f0 0%, #ffffff 100%);
+            padding: 50px;
+            border-radius: 25px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+            margin-bottom: 50px;
+        }
+
+        .product-info-box h3 {
+            font-size: 38px;
+            color: #FF6B35;
+            margin-bottom: 40px;
+            text-align: center;
+            border-bottom: 4px solid #FF6B35;
+            padding-bottom: 20px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 25px;
+            border-bottom: 2px solid #f0f0f0;
+            font-size: 19px;
+            align-items: center;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: #333;
+            min-width: 160px;
+            font-size: 20px;
+        }
+
+        .info-value {
+            color: #666;
+            text-align: right;
+            font-size: 19px;
+        }
+
+        .info-value.highlight {
+            color: #FF6B35;
+            font-weight: bold;
+            font-size: 22px;
+        }
+
+        .product-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .point-item {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            text-align: center;
+            border: 2px solid #fff8f0;
+        }
+
+        .point-item .point-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .point-item p {
+            font-size: 17px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        /* 상품 리스트 보기 섹션 */
+        .product-list-section {
+            background: linear-gradient(135deg, #fff8f0 0%, #fff 100%);
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .category-card {
+            background: white;
+            padding: 45px 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            border: 3px solid transparent;
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 45px rgba(255, 107, 53, 0.25);
+            border-color: #FF8E53;
+        }
+
+        .category-number {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 48px;
+            font-weight: 900;
+            color: #FFE8DD;
+            line-height: 1;
+        }
+
+        .category-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .category-card h3 {
+            font-size: 26px;
+            color: #FF6B35;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .category-card p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .category-link {
+            display: inline-block;
+            padding: 14px 35px;
+            background: linear-gradient(135deg, #FF6B35 0%, #FF8E53 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        .category-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.5);
+            background: linear-gradient(135deg, #FF8E53 0%, #FF6B35 100%);
+        }
+
+        /* 간편한 주문 프로세스 섹션 */
+        .order-process-section {
+            background: white;
+        }
+
+        .process-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: stretch;
+            gap: 35px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+
+        .process-step {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+            padding: 45px 35px;
+            background: linear-gradient(135deg, #fff8f0 0%, #ffffff 100%);
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+        }
+
+        .process-step:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.25);
+            border-color: #FF8E53;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #FF6B35 0%, #FF8E53 100%);
+            color: white;
+            border-radius: 50%;
+            font-size: 32px;
+            font-weight: bold;
+            line-height: 70px;
+            margin-bottom: 25px;
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        .process-step h3 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 18px;
+            font-weight: bold;
+        }
+
+        .process-step p {
+            font-size: 17px;
+            color: #666;
+            line-height: 1.9;
+        }
+
+        /* 06. 아웃트로 CTA 섹션 */
+        .cta-section {
+            background: linear-gradient(135deg, #FF6B35 0%, #FF8E53 100%);
+            color: white;
+            text-align: center;
+            padding: 120px 0;
+        }
+
+        .cta-section h2 {
+            color: white;
+            font-size: 50px;
+            margin-bottom: 25px;
+            font-weight: bold;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .cta-section .closing-copy {
+            font-size: 24px;
+            margin-bottom: 20px;
+            opacity: 0.98;
+            line-height: 1.7;
+        }
+
+        .cta-section .sub-text {
+            font-size: 20px;
+            margin-bottom: 50px;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 28px 70px;
+            background: white;
+            color: #FF6B35;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 24px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 18px 50px rgba(0,0,0,0.35);
+            background: #fff8f0;
+        }
+
+        .contact-info {
+            margin-top: 60px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-info h3 {
+            font-size: 28px;
+            margin-bottom: 25px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .contact-item {
+            margin: 15px 0;
+            font-size: 18px;
+            color: white;
+            opacity: 0.95;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .contact-item strong {
+            font-weight: 600;
+        }
+
+        /* 푸터 */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        footer p {
+            margin: 12px 0;
+            font-size: 16px;
+        }
+
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            .hero-container {
+                flex-direction: column;
+                gap: 40px;
+                padding: 0 20px;
+            }
+
+            .hero-slider {
+                height: 400px;
+                width: 100%;
+            }
+
+            .jeju-slider-container {
+                height: 400px;
+            }
+
+            .jeju-travel-title {
+                font-size: 26px;
+            }
+
+            .hero-text h1 {
+                font-size: 36px;
+            }
+
+            .hero-text .main-copy {
+                font-size: 24px;
+            }
+
+            .hero-text .sub-copy {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .section-subtitle {
+                font-size: 18px;
+            }
+
+            .emotion-content,
+            .function-intro,
+            .durability-content,
+            .product-info-box {
+                padding: 30px;
+            }
+
+            .category-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .process-container {
+                flex-direction: column;
+            }
+
+            .info-row {
+                flex-direction: column;
+                gap: 10px;
+                text-align: left;
+            }
+
+            .info-value {
+                text-align: left;
+            }
+
+            .cta-section h2 {
+                font-size: 36px;
+            }
+
+            .cta-section .closing-copy {
+                font-size: 20px;
+            }
+
+            .contact-info {
+                padding: 30px;
+            }
+
+            .contact-info h3 {
+                font-size: 22px;
+            }
+
+            .contact-item {
+                font-size: 15px;
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 헤더 -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">오르방 ORBANG</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 01. 인트로 (Hook) - 메인 히어로 섹션 -->
+    <section class="hero-section">
+        <div class="hero-container">
+            <!-- 왼쪽 텍스트 영역 -->
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>오르방<br>겨울 신상품 출시!</h1>
+                    <p class="main-copy">제주를 담은 상큼함 🍊</p>
+                    <p class="sub-copy">탐나는친구들(리유저블백)<br>지금 만나보세요</p>
+                </div>
+            </div>
+
+            <!-- 오른쪽 슬라이더 영역 -->
+            <div class="hero-slider">
+                <div class="slide active">
+                    <img src="./images/main-1.jpg" alt="탐나는친구들 리유저블백 대표 이미지">
+                </div>
+                <div class="slide">
+                    <img src="./images/main-2.png" alt="탐나는친구들 리유저블백 제품 이미지">
+                </div>
+                <div class="slider-dots">
+                    <span class="dot active" onclick="currentSlide(0)"></span>
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let slideIndex = 0;
+        let slideTimer;
+
+        function showSlides() {
+            let slides = document.getElementsByClassName("slide");
+            let dots = document.getElementsByClassName("dot");
+
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].classList.remove("active");
+            }
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].classList.remove("active");
+            }
+
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}
+
+            slides[slideIndex-1].classList.add("active");
+            dots[slideIndex-1].classList.add("active");
+
+            slideTimer = setTimeout(showSlides, 4000); // 4초마다 전환
+        }
+
+        function currentSlide(n) {
+            clearTimeout(slideTimer);
+            slideIndex = n;
+            let slides = document.getElementsByClassName("slide");
+            let dots = document.getElementsByClassName("dot");
+
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].classList.remove("active");
+            }
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].classList.remove("active");
+            }
+
+            slides[slideIndex].classList.add("active");
+            dots[slideIndex].classList.add("active");
+
+            slideTimer = setTimeout(showSlides, 4000);
+        }
+
+        // 페이지 로드 시 슬라이더 시작
+        window.addEventListener('load', function() {
+            setTimeout(showSlides, 4000);
+            setTimeout(showJejuSlides, 3500);
+        });
+
+        // 제주여행 슬라이더
+        let jejuSlideIndex = 0;
+        let jejuSlideTimer;
+
+        function showJejuSlides() {
+            let slides = document.getElementsByClassName("jeju-slide");
+            let dots = document.getElementsByClassName("jeju-dot");
+
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].classList.remove("active");
+            }
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].classList.remove("active");
+            }
+
+            jejuSlideIndex++;
+            if (jejuSlideIndex > slides.length) {jejuSlideIndex = 1}
+
+            slides[jejuSlideIndex-1].classList.add("active");
+            dots[jejuSlideIndex-1].classList.add("active");
+
+            jejuSlideTimer = setTimeout(showJejuSlides, 3500); // 3.5초마다 전환
+        }
+
+        function currentJejuSlide(n) {
+            clearTimeout(jejuSlideTimer);
+            jejuSlideIndex = n;
+            let slides = document.getElementsByClassName("jeju-slide");
+            let dots = document.getElementsByClassName("jeju-dot");
+
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].classList.remove("active");
+            }
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].classList.remove("active");
+            }
+
+            slides[jejuSlideIndex].classList.add("active");
+            dots[jejuSlideIndex].classList.add("active");
+
+            jejuSlideTimer = setTimeout(showJejuSlides, 3500);
+        }
+    </script>
+
+    <!-- 02. 디자인 & 감성 (Emotion) -->
+    <section class="design-emotion-section">
+        <div class="container">
+            <h2 class="section-title">시선을 사로잡는 디자인</h2>
+            <p class="section-subtitle">귀여운데 실용적이기까지 하네?</p>
+
+            <div class="emotion-content">
+                <h3>👀 시선 집중! 기분까지 상큼해지는 컬러</h3>
+                <p>
+                    칙칙한 장바구니는 이제 그만! 제주의 따스한 햇살을 닮은 시그니처 오렌지 컬러에
+                    치명적인 귀여움을 가진 <span class="highlight">'봉담이'</span>가 콕! 박혀있어요.
+                </p>
+                <p>
+                    "오늘 룩(Look) 심심한데?" 싶을 때 툭 걸쳐보세요.
+                    마트 갈 때도, 여행 갈 때도 당신의 패션을 완성하는 귀여운 포인트가 되어줍니다.
+                </p>
+            </div>
+
+            <div class="design-images">
+                <div class="design-image-card">
+                    <img src="./images/design-1.jpg" alt="봉담이 캐릭터 클로즈업">
+                </div>
+                <div class="design-image-card">
+                    <img src="./images/design-2.jpg" alt="패션 아이템으로 활용">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 03. 수납력 & 실용성 (Function) -->
+    <section class="functionality-section">
+        <div class="container">
+            <h2 class="section-title">수납력 & 실용성</h2>
+            <p class="section-subtitle">예쁜데 짐도 많이 들어간다는 반전 매력</p>
+
+            <div class="function-intro">
+                <h3>🧳 "이게 다 들어간다고?" 괴물 같은 수납력!</h3>
+                <p>
+                    작아 보인다고 얕보지 마세요. 도라에몽 주머니처럼 넣어도 넣어도 계속 들어가는
+                    놀라운 수납력을 경험하세요.
+                </p>
+            </div>
+
+            <!-- 수납력 시연 이미지 -->
+            <div class="design-images" style="margin-top: 50px; margin-bottom: 60px;">
+                <div class="design-image-card">
+                    <img src="./images/storage-1.jpg" alt="수납력 시연 - 다양한 물건">
+                </div>
+                <div class="design-image-card">
+                    <img src="./images/storage-2.jpg" alt="수납력 시연 - 가득 담긴 가방">
+                </div>
+            </div>
+
+            <div class="use-cases">
+                <div class="use-case-card">
+                    <span class="use-case-icon">✈️</span>
+                    <h4>여행 갈 때</h4>
+                    <p>옷, 세면도구, 면세품까지 한 번에 쏙! 여행 캐리어 위에 얹어 이동하기도 편리해요.</p>
+                </div>
+                <div class="use-case-card">
+                    <span class="use-case-icon">🛒</span>
+                    <h4>장 볼 때</h4>
+                    <p>무거운 우유, 부피 큰 과자도 거뜬하게! 대파, 과일, 생필품을 가득 담아보세요.</p>
+                </div>
+                <div class="use-case-card">
+                    <span class="use-case-icon">🧸</span>
+                    <h4>육아 필수템</h4>
+                    <p>기저귀, 젖병, 아이들 장난감 챙겨 나갈 때 최고! 육아맘들의 필수 아이템입니다.</p>
+                </div>
+            </div>
+
+            <!-- 추가 활용 이미지 -->
+            <div class="design-images" style="margin-top: 60px;">
+                <div class="design-image-card">
+                    <img src="./images/storage-3.jpg" alt="수납력 활용">
+                </div>
+                <div class="design-image-card">
+                    <img src="./images/storage-4.jpg" alt="여행 활용">
+                </div>
+            </div>
+
+            <!-- 제주여행 슬라이더 -->
+            <div class="jeju-travel-slider">
+                <h3 class="jeju-travel-title">제주여행과 함께하는 탐나는친구들 리유저블백</h3>
+                <div class="jeju-slider-container">
+                    <div class="jeju-slide active">
+                        <img src="./images/jeju-1.jpg" alt="제주여행 리유저블백 1">
+                    </div>
+                    <div class="jeju-slide">
+                        <img src="./images/jeju-2.jpg" alt="제주여행 리유저블백 2">
+                    </div>
+                    <div class="jeju-slide">
+                        <img src="./images/jeju-3.jpg" alt="제주여행 리유저블백 3">
+                    </div>
+                    <div class="jeju-slide">
+                        <img src="./images/jeju-4.jpg" alt="제주여행 리유저블백 4">
+                    </div>
+                    <div class="jeju-slide">
+                        <img src="./images/jeju-5.jpg" alt="제주여행 리유저블백 5">
+                    </div>
+                    <div class="jeju-slide">
+                        <img src="./images/jeju-6.jpg" alt="제주여행 리유저블백 6">
+                    </div>
+                    <div class="jeju-slider-dots">
+                        <span class="jeju-dot active" onclick="currentJejuSlide(0)"></span>
+                        <span class="jeju-dot" onclick="currentJejuSlide(1)"></span>
+                        <span class="jeju-dot" onclick="currentJejuSlide(2)"></span>
+                        <span class="jeju-dot" onclick="currentJejuSlide(3)"></span>
+                        <span class="jeju-dot" onclick="currentJejuSlide(4)"></span>
+                        <span class="jeju-dot" onclick="currentJejuSlide(5)"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 04. 내구성 & 휴대성 (Detail) -->
+    <section class="durability-section">
+        <div class="container">
+            <h2 class="section-title">내구성 & 휴대성</h2>
+            <p class="section-subtitle">튼튼하고 관리하기 쉽다는 점</p>
+
+            <div class="durability-content">
+                <h3>💪 튼튼하니까, 매일매일 부담 없이!</h3>
+                <p>
+                    일회용 비닐 대신 지구를 지키는 습관. 질기고 튼튼한 소재로 만들어져 무거운 짐도 걱정 없어요.
+                    물이나 음료가 묻어도 쓱- 닦으면 끝!
+                </p>
+                <p style="margin-top: 15px;">
+                    사용하지 않을 땐? 착착 접어 가방 속에 쏙! 언제 어디서나 필요할 때 꺼내 쓰세요.
+                </p>
+            </div>
+
+            <div class="detail-images">
+                <div class="detail-image-card">
+                    <img src="./images/durability-1.jpg" alt="방수 기능">
+                </div>
+                <div class="detail-image-card">
+                    <img src="./images/durability-2.jpg" alt="휴대성">
+                </div>
+                <div class="detail-image-card">
+                    <img src="./images/durability-3.jpg" alt="디테일 샷">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 05. 제품 정보 및 옵션 (Spec) -->
+    <section class="product-spec-section">
+        <div class="container">
+            <h2 class="section-title">제품 정보 및 옵션</h2>
+            <p class="section-subtitle">커피 한 잔 가격으로 만나는 제주의 감성!</p>
+
+            <div class="spec-container">
+                <div class="product-info-box">
+                    <h3>제품 상세 정보</h3>
+                    <div class="info-row">
+                        <span class="info-label">제품명</span>
+                        <span class="info-value">탐나는친구들(리유저블백)</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">디자인 옵션</span>
+                        <span class="info-value highlight">주황 (봉담이)</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">판매가</span>
+                        <span class="info-value highlight">5,000원</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">납품가</span>
+                        <span class="info-value">2,750원 (납품률 55%)</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">바코드</span>
+                        <span class="info-value">2900404600005</span>
+                    </div>
+                </div>
+
+                <div class="product-points">
+                    <div class="point-item">
+                        <div class="point-icon">📏</div>
+                        <p>넉넉한 사이즈</p>
+                    </div>
+                    <div class="point-item">
+                        <div class="point-icon">💧</div>
+                        <p>튼튼한 방수 재질</p>
+                    </div>
+                    <div class="point-item">
+                        <div class="point-icon">🎨</div>
+                        <p>유니크한 디자인</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 상품 리스트 보기 섹션 -->
+    <section class="product-list-section">
+        <div class="container">
+            <h2 class="section-title">상품 리스트 보기</h2>
+            <p class="section-subtitle">오르방의 다양한 상품 카테고리를 확인해보세요</p>
+
+            <div class="category-grid">
+                <!-- 신규 상품 -->
+                <div class="category-card">
+                    <span class="category-number">01</span>
+                    <span class="category-icon">✨</span>
+                    <h3>신규 상품</h3>
+                    <p>최신 입고된 따끈따끈한 신상품을 만나보세요</p>
+                    <a href="https://www.miricanvas.com/v/121d8ww" class="category-link" target="_blank">바로가기 →</a>
+                </div>
+
+                <!-- 전체상품 -->
+                <div class="category-card">
+                    <span class="category-number">02</span>
+                    <span class="category-icon">📦</span>
+                    <h3>전체상품</h3>
+                    <p>오르방의 모든 상품을 한눈에 확인하세요</p>
+                    <a href="https://www.miricanvas.com/v/1222t8y" class="category-link" target="_blank">바로보기 →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 간편한 주문 프로세스 섹션 -->
+    <section class="order-process-section">
+        <div class="container">
+            <h2 class="section-title">간편한 주문 프로세스</h2>
+            <p class="section-subtitle">3단계로 완성되는 간편한 주문</p>
+
+            <div class="process-container">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>상품 선택</h3>
+                    <p>원하시는 상품을 카탈로그에서 선택하고<br>수량을 확인해주세요</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>주문서 작성</h3>
+                    <p>거래처 정보와 배송지를 입력하고<br>주문서를 작성해주세요</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>주문 완료</h3>
+                    <p>주문 확인 후 신속하게<br>배송을 진행해드립니다</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 06. 아웃트로 (CTA) -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>나들이 가기 딱 좋은 날,<br>봉담이와 함께 가볍게 떠나볼까요?</h2>
+            <p class="closing-copy">지루한 일상에 상큼한 비타민이 되어줄게요.</p>
+            <p class="sub-text">지금 바로 탐나는친구들 리유저블백을 만나보세요!</p>
+            <a href="https://pf.kakao.com/_uASVb/chat" class="cta-button" target="_blank">문의하기 👉</a>
+
+            <div class="contact-info">
+                <h3>📧 제품 소개 및 문의</h3>
+                <div class="contact-item">
+                    <strong>연락처:</strong> 소인섭 부장 010-8606-7815
+                </div>
+                <div class="contact-item">
+                    <strong>메일:</strong> jejusonghouse@naver.com
+                </div>
+                <div class="contact-item">
+                    <strong>카카오톡:</strong> 카톡 친구찾기에서 "오르방" 검색
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 오르방 ORBANG. All rights reserved.</p>
+            <p>문의: 카카오톡 채널 @오르방</p>
+            <p>거래처 전용 특별가로 제공됩니다</p>
+        </div>
+    </footer>
+</body>
+</html>
